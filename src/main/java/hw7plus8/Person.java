@@ -9,6 +9,41 @@ import java.util.List;
 
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public @Data class Person {
+
+    private final static List<String> maleNamesList = Arrays.asList(
+            "Petr",
+            "Sergei",
+            "Nikolai",
+            "Ivan",
+            "Denis",
+            "Iliya",
+            "Stas"
+    );
+    private final static List<String> femaleNamesList = Arrays.asList(
+            "Maria",
+            "Elena",
+            "Anna",
+            "Olga",
+            "Natalia",
+            "Galina",
+            "Zoya"
+    );
+    private final static List<String> surnamesList = Arrays.asList(
+            "Petrov",
+            "Ivanov",
+            "Sidorov",
+            "Popov",
+            "Smirnov",
+            "Kuznetsov"
+    );
+
+    private final static RandomInterval maleNameInterval = new RandomInterval(0, maleNamesList.size() - 1);
+    private final static RandomInterval femaleNameInterval = new RandomInterval(0, femaleNamesList.size() - 1);
+    private final static RandomInterval surnameInterval = new RandomInterval(0, surnamesList.size() - 1);
+    private final static RandomInterval sexInterval = new RandomInterval(0, Sex.values().length - 1);
+    private final static RandomInterval educationInterval = new RandomInterval(0, Education.values().length - 1);
+    private final static RandomInterval ageInterval = new RandomInterval(0, 100);
+
     private String name;
     private String surname;
     private Integer age;
@@ -16,40 +51,6 @@ public @Data class Person {
     private Education education;
 
     public static Person createRandomPerson() {
-        List<String> maleNamesList = Arrays.asList(
-                "Petr",
-                "Sergei",
-                "Nikolai",
-                "Ivan",
-                "Denis",
-                "Iliya",
-                "Stas"
-        );
-        List<String> femaleNamesList = Arrays.asList(
-                "Maria",
-                "Elena",
-                "Anna",
-                "Olga",
-                "Natalia",
-                "Galina",
-                "Zoya"
-        );
-        List<String> surnamesList = Arrays.asList(
-                "Petrov",
-                "Ivanov",
-                "Sidorov",
-                "Popov",
-                "Smirnov",
-                "Kuznetsov"
-        );
-
-        RandomInterval maleNameInterval = new RandomInterval(0, maleNamesList.size() - 1);
-        RandomInterval femaleNameInterval = new RandomInterval(0, femaleNamesList.size() - 1);
-        RandomInterval surnameInterval = new RandomInterval(0, surnamesList.size() - 1);
-        RandomInterval sexInterval = new RandomInterval(0, Sex.values().length - 1);
-        RandomInterval educationInterval = new RandomInterval(0, Education.values().length - 1);
-        RandomInterval ageInterval = new RandomInterval(0, 100);
-
         Sex randomSex = Sex.values()[sexInterval.getRandomWithinInterval()];
         String randomName = randomSex == Sex.MALE
                 ? maleNamesList.get(maleNameInterval.getRandomWithinInterval())
