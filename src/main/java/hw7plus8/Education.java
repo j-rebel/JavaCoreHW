@@ -1,4 +1,4 @@
-package hw7;
+package hw7plus8;
 
 public enum Education {
     ELEMENTARY,
