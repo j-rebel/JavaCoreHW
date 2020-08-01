@@ -10,12 +10,13 @@ public class RandomInterval {
     public RandomInterval(int min, int max) {
         this.min = min;
         this.max = max;
-        this.diff = max - min;
+        this.diff = this.max - this.min;
     }
 
     public int getRandomWithinInterval() {
         Random random = new Random();
         int i = random.nextInt(this.diff + 1);
-        return i += this.min;
+        i += this.min;
+        return i;
     }
 }
