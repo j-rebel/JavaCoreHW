@@ -44,10 +44,10 @@ public @Data class Person {
     private final static RandomInterval educationInterval = new RandomInterval(0, Education.values().length - 1);
     private final static RandomInterval ageInterval = new RandomInterval(0, 100);
 
+    private Sex sex;
     private String name;
     private String surname;
     private Integer age;
-    private Sex sex;
     private Education education;
 
     public static Person createRandomPerson() {
@@ -62,10 +62,10 @@ public @Data class Person {
         Education randomEducation = Education.values()[educationInterval.getRandomWithinInterval()];
 
         return new Person(
+                randomSex,
                 randomName,
                 randomSurname,
                 randomAge,
-                randomSex,
                 randomEducation
         );
     }

@@ -1,5 +1,6 @@
 package hw7plus8;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,9 +82,17 @@ public class StreamFilter {
                 .filter(x -> x.getEducation() == Education.HIGHER)
                 .collect(Collectors.toList());
 
-        List<Person> allWorkers = Stream.concat(educatedMalesList.stream(), educatedFemalesList.stream())
-                .sorted(Comparator.comparing(Person::getSurname))
-                .collect(Collectors.toList());
+        List<Person> allWorkers = new ArrayList<>();
+
+        if (useParallelMode) {
+            allWorkers = Stream.concat(educatedMalesList.parallelStream(), educatedFemalesList.parallelStream())
+                    .sorted(Comparator.comparing(Person::getSurname))
+                    .collect(Collectors.toList());
+        } else {
+            allWorkers = Stream.concat(educatedMalesList.stream(), educatedFemalesList.stream())
+                    .sorted(Comparator.comparing(Person::getSurname))
+                    .collect(Collectors.toList());
+        }
 
         List<String> surnamesList = allWorkers.stream()
                 .map(Person::getSurname)
