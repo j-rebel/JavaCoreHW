@@ -13,7 +13,7 @@ public class StreamFilter {
     private Stream<Person> dutyReadyCountStream;
     private Stream<Person> educatedMaleStream;
     private Stream<Person> educatedFemaleStream;
-    private boolean useParallelMode = false;
+    private boolean useParallelMode;
 
     public StreamFilter (List<Person> people, boolean useParallelMode) {
         this.people = people;
@@ -31,10 +31,6 @@ public class StreamFilter {
             this.educatedMaleStream = this.people.parallelStream();
             this.educatedFemaleStream = this.people.parallelStream();
         }
-    }
-
-    public boolean getMode () {
-        return this.useParallelMode;
     }
 
     public void filterPeople() {
@@ -61,7 +57,7 @@ public class StreamFilter {
         List<String> surnamesList = dutyReadySurnamesStream
                 .filter(x -> x.getAge() >= 18 && x.getAge() <= 27)
                 .filter(x -> x.getSex() == Sex.MALE)
-                .map(x -> x.getSurname())
+                .map(Person::getSurname)
                 .collect(Collectors.toList());
         System.out.println("\nSurnames only:");
         for (String surname: surnamesList) {
@@ -90,14 +86,14 @@ public class StreamFilter {
                 .collect(Collectors.toList());
 
         List<String> surnamesList = allWorkers.stream()
-                .map(x -> x.getSurname())
+                .map(Person::getSurname)
                 .collect(Collectors.toList());
         System.out.println("\nSurnames only:");
         for (String surname: surnamesList) {
             System.out.println("- " + surname);
         }
 
-        long count = allWorkers.stream().count();
+        long count = allWorkers.size();
 
         System.out.println("\nQuantity: " + count);
     }

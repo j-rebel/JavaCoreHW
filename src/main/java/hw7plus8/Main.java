@@ -76,15 +76,15 @@ public class Main {
         StreamFilter streamFilterNormal = new StreamFilter(people, false);
         streamFilterNormal.filterPeople();
         Double tFinishNormal = (double) System.nanoTime();
-        Double resNormal = (tFinishNormal - tStartNormal) / 1_000_000_000.0;
+        double resNormal = (tFinishNormal - tStartNormal) / 1_000_000_000.0;
 
         Double tStartParallel = (double) System.nanoTime();
         StreamFilter streamFilterParallel = new StreamFilter(people, true);
         streamFilterParallel.filterPeople();
         Double tFinishParallel = (double) System.nanoTime();
-        Double resParallel = (tFinishParallel - tStartParallel) / 1_000_000_000.0;
+        double resParallel = (tFinishParallel - tStartParallel) / 1_000_000_000.0;
 
-        Double percentageNormalToParallel = Math.floor((resNormal - resParallel) / (resNormal / 100.0));
+        double percentageNormalToParallel = Math.floor((resNormal - resParallel) / (resNormal / 100.0));
 
         System.out.println("\nEvaluation time normal:   " + resNormal + " seconds");
         System.out.println("Evaluation time parallel: " + resParallel + " seconds");

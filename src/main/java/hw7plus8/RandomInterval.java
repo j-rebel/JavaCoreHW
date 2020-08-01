@@ -3,9 +3,9 @@ package hw7plus8;
 import java.util.Random;
 
 public class RandomInterval {
-    private int min;
-    private int max;
-    private int diff;
+    private final int min;
+    private final int max;
+    private final int diff;
 
     public RandomInterval(int min, int max) {
         this.min = min;
