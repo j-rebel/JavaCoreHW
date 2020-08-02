@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Folder {
 
@@ -14,9 +12,6 @@ public class Folder {
 
     private Path parent;
     private Path path;
-
-    private List<Folder> subfolderList = new ArrayList<>();
-    private List<Path> filesList = new ArrayList<>();
 
     public Folder(String parent, String path) {
         this.parent = Paths.get(parent).toAbsolutePath();
@@ -49,16 +44,13 @@ public class Folder {
     }
 
     public Folder addSubfolder(String subfolderPath) {
-        Folder subfolder = new Folder(path.toString(), subfolderPath);
-        subfolderList.add(subfolder);
-        return subfolder;
+        return new Folder(path.toString(), subfolderPath);
     }
 
     public Path addFiles(String fileName) {
         Path filePath = Paths.get(path.toString() + SR + fileName).toAbsolutePath();
-        filesList.add(filePath);
         if(Files.exists(filePath)) {
-            log.append("Already existing file " + filePath + "\n");
+            log.append("Already existing file ");
             log.append(filePath);
             log.append("\n");
         } else {
@@ -75,25 +67,5 @@ public class Folder {
             }
         }
         return filePath;
-    }
-
-    public void printSubFoldersList() {
-        if(subfolderList.isEmpty()) {
-            System.out.println("- No subfolders inside.");
-        } else {
-            for (Folder subfolder : subfolderList) {
-                System.out.println("- " + subfolder.getPath());
-            }
-        }
-    }
-
-    public void printFilesList() {
-        if(filesList.isEmpty()) {
-            System.out.println("- No files inside.");
-        } else {
-            for (Path filePath : filesList) {
-                System.out.println("- " + filePath.toString());
-            }
-        }
     }
 }
