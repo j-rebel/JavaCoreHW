@@ -28,7 +28,7 @@ import java.util.List;
 
 public class Main {
 
-    static final String basicPath = "src\\main\\java\\hw14\\";
+    static final String basicPath = "src\\main\\java\\hw14plus15plus16\\";
     static final String pathToCSV = basicPath + "data.csv";
     static final String pathToJSON = basicPath + "data.json";
     static final String pathToXML = basicPath + "data.xml";
